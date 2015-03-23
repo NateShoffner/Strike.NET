@@ -1,3 +1,49 @@
+# Strike.NET
+
+C# wrapper for the [Strike](https://getstrike.net/) API.
+
+## Examples
+
+### Searching
+```csharp
+var strike = new StrikeApi();
+var results = strike.Search("Debian");
+
+Console.WriteLine("Found {0} results:", results.Count());
+
+foreach (var result in results)
+{
+	Console.WriteLine(result.TorrentTitle);
+}
+```
+
+### Info
+```csharp
+var strike = new StrikeApi();
+
+var info = strike.GetInfo("2875DA262892568665D580B2043E5C0D49BD409F");
+
+Console.WriteLine(info.TorrentTitle);
+Console.WriteLine("Leeches: {0}", info.Leeches);
+Console.WriteLine("Seeds: {0}", info.Seeds);
+```
+
+###  Download
+```csharp
+var strike = new StrikeApi();
+var url = strike.GetDownloadLink("2875DA262892568665D580B2043E5C0D49BD409F");
+
+Console.WriteLine(url);
+```
+
+## Todo
+* Refactor deserialization for search/info responses
+* Convert string-based torrent sizes to long
+* Use custom filename/filesize mapping
+* More documentation
+
+## License
+
 The MIT License (MIT)
 
 Copyright (c) 2015 Nate Shoffner
