@@ -18,6 +18,7 @@ namespace StrikeNET
     public class StrikeApi
     {
         private const int MaxInfoQueries = 50;
+        private const int MinSearchQueryLength = 4;
 
         private const string ApiBaseUrL = "http://getstrike.net/api/";
 
@@ -118,6 +119,9 @@ namespace StrikeNET
         /// <returns>Returns an array of search results.</returns>
         public TorrentSearchResult[] Search(string query)
         {
+            if (query.Trim().Length < MinSearchQueryLength)
+                throw new StrikeException("Query must be at least 4 characters long without whitespace");
+
             var results = new List<TorrentSearchResult>();
 
             var request = new RestRequest("torrents/search/", Method.GET);
