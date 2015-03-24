@@ -37,8 +37,6 @@ Console.WriteLine(url);
 ```
 
 ## Todo
-* Refactor deserialization for search/info responses
-* Convert string-based torrent sizes to long
 * Use custom filename/filesize mapping
 * More documentation
 
