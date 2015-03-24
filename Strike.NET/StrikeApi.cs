@@ -94,6 +94,11 @@ namespace StrikeNET
             return results.ToArray();
         }
 
+        /// <summary>
+        /// Performs a torrent search.
+        /// </summary>
+        /// <param name="query">Torrent search query.</param>
+        /// <returns>Returns an array of search results.</returns>
         public TorrentSearchResult[] Search(string query)
         {
             var results = new List<TorrentSearchResult>();
