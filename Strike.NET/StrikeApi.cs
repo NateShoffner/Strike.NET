@@ -24,6 +24,16 @@ namespace StrikeNET
             _restClient = new RestClient(ApiBaseUrL) {Proxy = proxy, Timeout = timeout, UserAgent = "Strike.NET"};
         }
 
+        private IRestResponse<T> Execute<T>(IRestRequest request) where T : new()
+        {
+           var response = _restClient.Execute<T>(request);
+
+            if (response.ErrorException != null)
+                throw response.ErrorException;
+
+            return response;
+        }
+
         /// <summary>
         ///     Retrieves a download link for a torrent.
         /// </summary>
@@ -33,11 +43,7 @@ namespace StrikeNET
         {
             var request = new RestRequest("torrents/downloads/", Method.GET);
             request.AddParameter("hash", hash);
-            var response = _restClient.Execute<DownloadResponse>(request);
-
-            if (response.ErrorException != null)
-                throw response.ErrorException;
-
+            var response = Execute<DownloadResponse>(request);
             return new Uri(response.Data.Message);
         }
 
@@ -48,11 +54,7 @@ namespace StrikeNET
         public int GetTorrentCount()
         {
             var request = new RestRequest("torrents/count/", Method.GET);
-            var response = _restClient.Execute<CountResponse>(request);
-
-            if (response.ErrorException != null)
-                throw response.ErrorException;
-
+            var response = Execute<CountResponse>(request);
             return response.Data.IndexedTorrents;
         }
 
@@ -80,13 +82,10 @@ namespace StrikeNET
             var request = new RestRequest("torrents/info/", Method.GET);
             request.AddParameter("hashes", string.Join(",", hashes));
 
-            var response = _restClient.Execute<TorrentInfoResponse>(request);
+            var response = Execute<TorrentInfoResponse>(request);
 
             if (response.StatusCode == HttpStatusCode.NotFound)
                 return results.ToArray();
-
-            if (response.ErrorException != null)
-                throw response.ErrorException;
 
             // todo refactor this using a custom serializer
             // or something similar, currently this feels
@@ -111,13 +110,11 @@ namespace StrikeNET
 
             var request = new RestRequest("torrents/search/", Method.GET);
             request.AddParameter("q", query);
-            var response = _restClient.Execute<TorrentSearchResponse>(request);
+
+            var response = Execute<TorrentSearchResponse>(request);
 
             if (response.StatusCode == HttpStatusCode.NotFound)
                 return results.ToArray();
-
-            if (response.ErrorException != null)
-                throw response.ErrorException;
 
             // todo refactor this using a custom serializer
             // or something similar, currently this feels
