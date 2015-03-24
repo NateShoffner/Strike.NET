@@ -5,14 +5,12 @@ using System.Text;
 
 namespace StrikeNET
 {
-    public class TorrentSearchResult : ITorrentSearchInfo, ITorrent
+    public class TorrentInfoResult : ITorrentInfo, ITorrent
     {
-        #region Implementation of ITorrentSearchInfo
+        #region Implementation of ITorrentInfo
 
-        public Uri Page { get; private set; }
-        public Uri DownloadLink { get; private set; }
-        public Uri RssFeed { get; private set; }
-        public int DownloadCount { get; private set; }
+        public List<TorrentFileInfo> Files { get; private set; }
+        public Uri MagnetUri { get; private set; }
 
         #endregion
 

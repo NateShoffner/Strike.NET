@@ -82,7 +82,7 @@ namespace StrikeNET
         ///     Retrieves information for a torrent.
         /// </summary>
         /// <param name="hash">The torrent hash.</param>
-        public TorrentInfo GetInfo(string hash)
+        public TorrentInfoResult GetInfo(string hash)
         {
             var results = GetInfo(new[] {hash});
             return results.FirstOrDefault();
@@ -92,12 +92,12 @@ namespace StrikeNET
         ///     Retrieves information for a set of torrents.
         /// </summary>
         /// <param name="hashes">The torrent hashes.</param>
-        public TorrentInfo[] GetInfo(string[] hashes)
+        public TorrentInfoResult[] GetInfo(string[] hashes)
         {
             if (hashes.Length > MaxInfoQueries)
                 throw new StrikeException(string.Format("Cannot exceed {0} info queries per request", MaxInfoQueries));
 
-            var results = new List<TorrentInfo>();
+            var results = new List<TorrentInfoResult>();
 
             var request = new RestRequest("torrents/info/", Method.GET);
             request.AddParameter("hashes", string.Join(",", hashes));
@@ -111,7 +111,7 @@ namespace StrikeNET
 
             var responseContent = (array == null ? null : new TorrentInfoResponse()
             {
-                Torrents = array.OfType<JArray>().SelectMany(a => JsonConvert.DeserializeObject<List<TorrentInfo>>(a.ToString())).ToList()
+                Torrents = array.OfType<JArray>().SelectMany(a => JsonConvert.DeserializeObject<List<TorrentInfoResult>>(a.ToString())).ToList()
             });
 
             if (responseContent != null)

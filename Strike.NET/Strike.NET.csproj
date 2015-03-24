@@ -49,10 +49,12 @@
     <Compile Include="Deserialization\RestSharpJsonNetDeserializer.cs" />
     <Compile Include="StrikeApi.cs" />
     <Compile Include="StrikeException.cs" />
-    <Compile Include="Torrent.cs" />
-    <Compile Include="TorrentInfo.cs" />
+    <Compile Include="ITorrent.cs" />
+    <Compile Include="ITorrentInfo.cs" />
     <Compile Include="Responses\TorrentInfoResponse.cs" />
     <Compile Include="Responses\TorrentSearchResponse.cs" />
+    <Compile Include="ITorrentSearchInfo.cs" />
+    <Compile Include="TorrentInfoResult.cs" />
     <Compile Include="TorrentSearchResult.cs" />
   </ItemGroup>
   <ItemGroup>

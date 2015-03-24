@@ -12,19 +12,19 @@ namespace StrikeNET
     /// <summary>
     /// Represents additional torrent information.
     /// </summary>
-    public class TorrentInfo : Torrent
+    public interface ITorrentInfo
     {
         /// <summary>
         /// The file(s) contained within the torrent.
         /// </summary>
         [JsonProperty("file_info")]
         [JsonConverter(typeof(FileInfoConverter))]
-        public List<TorrentFileInfo> Files { get; private set; }
+        List<TorrentFileInfo> Files { get; }
 
         /// <summary>
         /// The torrent magnet Uri.
         /// </summary>
         [JsonProperty("magnet_uri")]
-        public Uri MagnetUri { get; private set; }
+        Uri MagnetUri { get; }
     }
 }
