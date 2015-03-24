@@ -42,6 +42,7 @@
     <Compile Include="FileInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StrikeApi.cs" />
+    <Compile Include="StrikeException.cs" />
     <Compile Include="Torrent.cs" />
     <Compile Include="TorrentInfo.cs" />
     <Compile Include="Responses\TorrentInfoResponse.cs" />
