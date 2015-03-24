@@ -2,6 +2,7 @@
 
 using System;
 using Newtonsoft.Json;
+using StrikeNET.Converters;
 
 #endregion
 
@@ -31,7 +32,8 @@ namespace StrikeNET
         public int FileCount { get; protected set; }
 
         [JsonProperty("size")]
-        public string Size { get; protected set; }
+        [JsonConverter(typeof(FileSizeStringConverter))]
+        public long Size { get; protected set; }
 
         [JsonProperty("upload_date")]
         public DateTime UploadDate { get; protected set; }
