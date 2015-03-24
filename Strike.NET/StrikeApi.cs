@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using RestSharp;
+using StrikeNET.Responses;
 
 #endregion
 
@@ -12,6 +13,8 @@ namespace StrikeNET
 {
     public class StrikeApi
     {
+        private const int MAX_INFO_QUERIES = 50;
+
         private const string ApiBaseUrL = "http://getstrike.net/api/";
 
         private readonly RestClient _restClient;
@@ -69,6 +72,9 @@ namespace StrikeNET
         /// <param name="hashes">The torrent hashes.</param>
         public TorrentInfo[] GetInfo(string[] hashes)
         {
+            if (hashes.Length > MAX_INFO_QUERIES)
+                throw new StrikeException(string.Format("Cannot exceed {0} info queries per request", MAX_INFO_QUERIES));
+
             var results = new List<TorrentInfo>();
 
             var request = new RestRequest("torrents/info/", Method.GET);
