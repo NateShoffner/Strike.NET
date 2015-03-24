@@ -40,10 +40,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\FileInfoConverter.cs" />
     <Compile Include="Converters\FileSizeStringConverter.cs" />
     <Compile Include="Responses\CountResponse.cs" />
     <Compile Include="Responses\DownloadResponse.cs" />
-    <Compile Include="FileInfo.cs" />
+    <Compile Include="TorrentFileInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Deserialization\RestSharpJsonNetDeserializer.cs" />
     <Compile Include="StrikeApi.cs" />
