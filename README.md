@@ -36,9 +36,6 @@ var url = strike.GetDownloadLink("2875DA262892568665D580B2043E5C0D49BD409F");
 Console.WriteLine(url);
 ```
 
-## Todo
-* More documentation
-
 ## License
 
 The MIT License (MIT)
