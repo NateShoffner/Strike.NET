@@ -15,6 +15,9 @@ using StrikeNET.Responses;
 
 namespace StrikeNET
 {
+    /// <summary>
+    /// Represents the Strike API service.
+    /// </summary>
     public class StrikeApi
     {
         private const int MaxInfoQueries = 50;
@@ -24,6 +27,11 @@ namespace StrikeNET
 
         private readonly RestClient _restClient;
 
+        /// <summary>
+        /// Initializes a new StrikeApi instance.
+        /// </summary>
+        /// <param name="timeout">The timeout used for requests.</param>
+        /// <param name="proxy">The proxy settings to use for requests.</param>
         public StrikeApi(int timeout = 0, IWebProxy proxy = null)
         {
             var serializerSettings = new JsonSerializerSettings
