@@ -37,7 +37,6 @@ Console.WriteLine(url);
 ```
 
 ## Todo
-* Use custom filename/filesize mapping
 * More documentation
 
 ## License
