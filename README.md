@@ -36,6 +36,11 @@ var url = strike.GetDownloadLink("2875DA262892568665D580B2043E5C0D49BD409F");
 Console.WriteLine(url);
 ```
 
+## Dependencies
+* [RestSharp](http://restsharp.org/)
+* [JSON.NET](http://www.newtonsoft.com/json) - Sadly necessary because RestSharp insists on using SimpleJson.
+
+
 ## License
 
 The MIT License (MIT)
