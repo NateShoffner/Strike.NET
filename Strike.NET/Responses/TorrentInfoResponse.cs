@@ -6,10 +6,8 @@ using System.Collections.Generic;
 
 namespace StrikeNET.Responses
 {
-    public class TorrentInfoResponse : List<List<TorrentInfo>>
+    public class TorrentInfoResponse
     {
-        public int results { get; set; }
-        public int statuscode { get; set; }
-        public double responsetime { get; set; }
+        public List<TorrentInfo> Torrents { get; set; }
     }
 }

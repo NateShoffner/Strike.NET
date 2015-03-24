@@ -6,7 +6,7 @@ using RestSharp.Deserializers;
 
 #endregion
 
-namespace StrikeNET
+namespace StrikeNET.Deserialization
 {
     internal class RestSharpJsonNetDeserializer : IDeserializer
     {
