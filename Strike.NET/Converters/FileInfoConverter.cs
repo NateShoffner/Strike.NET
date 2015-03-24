@@ -35,7 +35,9 @@ namespace StrikeNET.Converters
                     var fileNames = new List<string>(fileNamesArray.Values<string>());
                     var fileLengths = new List<long>(fileLengthsArray.Values<long>());
 
-                    var total = fileNames.Count();
+                    //increment using lengths since 'file_names'
+                    //includes directories as well
+                    var total = fileLengths.Count;
                     for (var i = 0; i < total; i++)
                     {
                         var fi = new TorrentFileInfo(fileNames[i], fileLengths[i]);
