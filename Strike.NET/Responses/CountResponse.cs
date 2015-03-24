@@ -1,4 +1,4 @@
-﻿namespace StrikeNET
+﻿namespace StrikeNET.Responses
 {
     internal class CountResponse
     {
