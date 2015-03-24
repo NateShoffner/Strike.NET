@@ -17,5 +17,8 @@ namespace StrikeNET
 
         [JsonProperty("rss_feed")]
         public Uri RssFeed { get; private set; }
+
+        [JsonProperty("download_count")]
+        public int DownloadCount { get; protected set; }
     }
 }
