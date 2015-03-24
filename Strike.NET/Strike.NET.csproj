@@ -55,6 +55,7 @@
     <Compile Include="Responses\TorrentSearchResponse.cs" />
     <Compile Include="ITorrentSearchInfo.cs" />
     <Compile Include="TorrentInfoResult.cs" />
+    <Compile Include="TorrentInfoSearchResult.cs" />
     <Compile Include="TorrentSearchResult.cs" />
   </ItemGroup>
   <ItemGroup>

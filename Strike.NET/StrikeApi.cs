@@ -92,15 +92,23 @@ namespace StrikeNET
         ///     Retrieves information for a set of torrents.
         /// </summary>
         /// <param name="hashes">The torrent hashes.</param>
-        public TorrentInfoResult[] GetInfo(string[] hashes)
+        /// <param name="truncateQueries">Queries will be truncated if they exceed the limit.</param>
+        public TorrentInfoResult[] GetInfo(string[] hashes, bool truncateQueries = false)
         {
-            if (hashes.Length > MaxInfoQueries)
-                throw new StrikeException(string.Format("Cannot exceed {0} info queries per request", MaxInfoQueries));
+            var hashList = new List<string>(hashes);
+
+            if (hashList.Count > MaxInfoQueries)
+            {
+                if (truncateQueries)
+                    hashList = new List<string>(hashList.Take(MaxInfoQueries));
+                else
+                    throw new StrikeException(string.Format("Cannot exceed {0} info queries per request", MaxInfoQueries));
+            }
 
             var results = new List<TorrentInfoResult>();
 
             var request = new RestRequest("torrents/info/", Method.GET);
-            request.AddParameter("hashes", string.Join(",", hashes));
+            request.AddParameter("hashes", string.Join(",", hashList.ToArray()));
 
             var response = _restClient.Execute(request);
 
@@ -149,6 +157,57 @@ namespace StrikeNET
 
             if (responseContent != null)
                 results.AddRange(responseContent.SearchResults);
+
+            return results.ToArray();
+        }
+
+        /// <summary>
+        /// Performs a combined torrent search and info lookup.
+        /// </summary>
+        /// <param name="query">Torrent search query.</param>
+        /// <returns>Returns an array of torrent</returns>
+        public TorrentInfoSearchResult[] InfoSearch(string query)
+        {
+            var results = new List<TorrentInfoSearchResult>();
+
+            var searchResults = new List<TorrentSearchResult>(Search(query));
+
+            var hashes = searchResults.Select(x => x.TorrentHash);
+
+            var infoResults = GetInfo(hashes.ToArray(), true);
+
+            //this is a bit hacky, but it works
+            foreach (var infoResult in infoResults)
+            {
+                var searchResult = searchResults.Find(x => x.TorrentHash == infoResult.TorrentHash);
+    
+                //this shouldn't ever be null, but just incase...
+                if (searchResult != null)
+                {
+                    var r = new TorrentInfoSearchResult
+                    {
+                        //torrent data
+                        TorrentHash = searchResult.TorrentHash, 
+                        TorrentTitle = searchResult.TorrentTitle, 
+                        TorrentCategory = searchResult.TorrentCategory,
+                        SubCategory = searchResult.SubCategory,
+                        Seeds = searchResult.Seeds, 
+                        Leeches = searchResult.Leeches,
+
+                        //search data
+                        Page = searchResult.Page,
+                        DownloadLink = searchResult.DownloadLink,
+                        RssFeed = searchResult.RssFeed,
+                        DownloadCount = searchResult.DownloadCount,
+
+                        //info
+                        Files = infoResult.Files,
+                        MagnetUri = infoResult.MagnetUri
+                    };
+
+                    results.Add(r);
+                }
+            }
 
             return results.ToArray();
         }
