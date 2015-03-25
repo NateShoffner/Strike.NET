@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace StrikeNET
 {
-    public class Common
+    internal class Common
     {
         private static string _assemblyVersion;
 
