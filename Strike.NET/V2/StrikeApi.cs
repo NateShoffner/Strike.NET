@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using RestSharp;
 using StrikeNET.Deserialization;
@@ -17,7 +16,7 @@ using StrikeNET.V2.Responses;
 namespace StrikeNET.V2
 {
     /// <summary>
-    /// Represents the Strike API service.
+    ///     Represents the Strike API service.
     /// </summary>
     public class StrikeApi
     {
@@ -29,7 +28,7 @@ namespace StrikeNET.V2
         private readonly RestClient _restClient;
 
         /// <summary>
-        /// Initializes a new StrikeApi instance.
+        ///     Initializes a new StrikeApi instance.
         /// </summary>
         /// <param name="timeout">The timeout used for requests.</param>
         /// <param name="proxy">The proxy settings to use for requests.</param>
@@ -41,7 +40,7 @@ namespace StrikeNET.V2
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
             };
 
-            _restClient = new RestClient(ApiBaseUrL) { Proxy = proxy, Timeout = timeout, UserAgent = Constants.UserAgent };
+            _restClient = new RestClient(ApiBaseUrL) {Proxy = proxy, Timeout = timeout, UserAgent = Constants.UserAgent};
             _restClient.AddHandler("application/json", new RestSharpJsonNetDeserializer(serializerSettings));
         }
 
@@ -127,11 +126,16 @@ namespace StrikeNET.V2
                 return results.ToArray();
 
             if (response.Data != null)
-               results.AddRange(response.Data.Torrents);
+                results.AddRange(response.Data.Torrents);
 
             return results.ToArray();
         }
 
+        /// <summary>
+        ///     Gets a torrent description.
+        /// </summary>
+        /// <param name="hash">The torrent hash.</param>
+        /// <returns>Returns base64 decoded description string.</returns>
         public string GetDescriptions(string hash)
         {
             var request = new RestRequest("torrents/descriptions/", Method.GET);
@@ -167,7 +171,7 @@ namespace StrikeNET.V2
             if (!string.IsNullOrEmpty(subCategory))
                 request.AddParameter("subcategory", subCategory);
 
-            var response = Execute< TorrentSearchResponse>(request);
+            var response = Execute<TorrentSearchResponse>(request);
 
             if (response.StatusCode == HttpStatusCode.NotFound)
                 return results.ToArray();
@@ -179,7 +183,7 @@ namespace StrikeNET.V2
         }
 
         /// <summary>
-        /// Performs a combined torrent search and info lookup.
+        ///     Performs a combined torrent search and info lookup.
         /// </summary>
         /// <param name="query">Torrent search query.</param>
         /// <param name="category">Torrent category.</param>
@@ -199,18 +203,18 @@ namespace StrikeNET.V2
             foreach (var infoResult in infoResults)
             {
                 var searchResult = searchResults.Find(x => x.TorrentHash == infoResult.TorrentHash);
-    
+
                 //this shouldn't ever be null, but just incase...
                 if (searchResult != null)
                 {
                     var r = new TorrentInfoSearchResult
                     {
                         //torrent data
-                        TorrentHash = searchResult.TorrentHash, 
-                        TorrentTitle = searchResult.TorrentTitle, 
+                        TorrentHash = searchResult.TorrentHash,
+                        TorrentTitle = searchResult.TorrentTitle,
                         TorrentCategory = searchResult.TorrentCategory,
                         SubCategory = searchResult.SubCategory,
-                        Seeds = searchResult.Seeds, 
+                        Seeds = searchResult.Seeds,
                         Leeches = searchResult.Leeches,
 
                         //search data
