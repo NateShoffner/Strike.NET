@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs" />
-    <Compile Include="Constants.cs" />
+    <Compile Include="Common.cs" />
     <Compile Include="Converters\FileInfoConverter.cs" />
     <Compile Include="Converters\FileSizeStringConverter.cs" />
     <Compile Include="Subcategory.cs" />

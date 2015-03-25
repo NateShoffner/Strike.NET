@@ -40,7 +40,7 @@ namespace StrikeNET.V2
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
             };
 
-            _restClient = new RestClient(ApiBaseUrL) {Proxy = proxy, Timeout = timeout, UserAgent = Constants.UserAgent};
+            _restClient = new RestClient(ApiBaseUrL) {Proxy = proxy, Timeout = timeout, UserAgent = Common.GetUserAgent()};
             _restClient.AddHandler("application/json", new RestSharpJsonNetDeserializer(serializerSettings));
         }
 

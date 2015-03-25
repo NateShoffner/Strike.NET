@@ -41,7 +41,7 @@ namespace StrikeNET.V1
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
             };
 
-            _restClient = new RestClient(ApiBaseUrL) { Proxy = proxy, Timeout = timeout, UserAgent = Constants.UserAgent };
+            _restClient = new RestClient(ApiBaseUrL) { Proxy = proxy, Timeout = timeout, UserAgent = Common.GetUserAgent() };
             _restClient.AddHandler("application/json", new RestSharpJsonNetDeserializer(serializerSettings));
         }
 
@@ -79,7 +79,7 @@ namespace StrikeNET.V1
             request.AddParameter("hash", hash);
             var response = Execute<DownloadResponse>(request);
 
-            // api v2 actually returns 404 on non-existant torrents
+            // api v2 actually returns 404 on non-existent torrents
             if (response.StatusCode == HttpStatusCode.NotFound)
                 return null;
 
