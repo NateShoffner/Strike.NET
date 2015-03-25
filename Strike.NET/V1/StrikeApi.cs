@@ -78,7 +78,12 @@ namespace StrikeNET.V1
             var request = new RestRequest("torrents/downloads/", Method.GET);
             request.AddParameter("hash", hash);
             var response = Execute<DownloadResponse>(request);
-            return response.Data.Url;
+
+            // api v2 actually returns 404 on non-existant torrents
+            if (response.StatusCode == HttpStatusCode.NotFound)
+                return null;
+
+            return new Uri(response.Data.Message);
         }
 
         /// <summary>
