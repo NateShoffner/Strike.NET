@@ -6,7 +6,7 @@ using StrikeNET.Converters;
 
 #endregion
 
-namespace StrikeNET
+namespace StrikeNET.V1
 {
     /// <summary>
     ///     Represents a torrent entry.

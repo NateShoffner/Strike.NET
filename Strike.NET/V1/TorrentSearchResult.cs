@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace StrikeNET
+namespace StrikeNET.V1
 {
     public class TorrentSearchResult : ITorrentSearchInfo, ITorrent
     {

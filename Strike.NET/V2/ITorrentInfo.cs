@@ -7,7 +7,7 @@ using StrikeNET.Converters;
 
 #endregion
 
-namespace StrikeNET
+namespace StrikeNET.V2
 {
     /// <summary>
     /// Represents additional torrent information.

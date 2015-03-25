@@ -1,4 +1,4 @@
-namespace StrikeNET.Responses
+namespace StrikeNET.V1.Responses
 {
     internal class DownloadResponse
     {

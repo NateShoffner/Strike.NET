@@ -1,18 +1,19 @@
 ﻿#region
 
 using System;
-using System.Collections.Generic;
 
 #endregion
 
-namespace StrikeNET
+namespace StrikeNET.V2
 {
-    public class TorrentInfoResult : ITorrentInfo, ITorrent
+    public class TorrentSearchResult : ITorrentSearchInfo, ITorrent
     {
-        #region Implementation of ITorrentInfo
+        #region Implementation of ITorrentSearchInfo
 
-        public List<TorrentFileInfo> Files { get; private set; }
-        public Uri MagnetUri { get; private set; }
+        public Uri Page { get; private set; }
+        public Uri DownloadLink { get; private set; }
+        public Uri RssFeed { get; private set; }
+        public int DownloadCount { get; private set; }
 
         #endregion
 

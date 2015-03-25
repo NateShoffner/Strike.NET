@@ -21,7 +21,7 @@ namespace StrikeNET.Converters
         {
             var files = new List<TorrentFileInfo>();
 
-            var fileInfo = JArray.Load(reader);
+            var fileInfo = JObject.Load(reader);
 
             var o = fileInfo.First;
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 #endregion
 
-namespace StrikeNET
+namespace StrikeNET.V1
 {
     public class TorrentInfoSearchResult : ITorrentInfo, ITorrentSearchInfo, ITorrent
     {

@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 #endregion
 
-namespace StrikeNET
+namespace StrikeNET.V2
 {
     /// <summary>
     /// Reprents a torrent search result.

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 #endregion
 
-namespace StrikeNET.Responses
+namespace StrikeNET.V2.Responses
 {
     public class TorrentInfoResponse
     {

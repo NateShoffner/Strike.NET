@@ -9,11 +9,11 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using RestSharp;
 using StrikeNET.Deserialization;
-using StrikeNET.Responses;
+using StrikeNET.V1.Responses;
 
 #endregion
 
-namespace StrikeNET
+namespace StrikeNET.V1
 {
     /// <summary>
     /// Represents the Strike API service.
@@ -47,6 +47,16 @@ namespace StrikeNET
         private IRestResponse<T> Execute<T>(IRestRequest request) where T : new()
         {
             var response = _restClient.Execute<T>(request);
+
+            if (response.ErrorException != null)
+                throw response.ErrorException;
+
+            return response;
+        }
+
+        private IRestResponse Execute(IRestRequest request)
+        {
+            var response = _restClient.Execute(request);
 
             if (response.ErrorException != null)
                 throw response.ErrorException;
@@ -110,7 +120,7 @@ namespace StrikeNET
             var request = new RestRequest("torrents/info/", Method.GET);
             request.AddParameter("hashes", string.Join(",", hashList.ToArray()));
 
-            var response = _restClient.Execute(request);
+            var response = Execute(request);
 
             if (response.StatusCode == HttpStatusCode.NotFound)
                 return results.ToArray();
@@ -143,7 +153,7 @@ namespace StrikeNET
             var request = new RestRequest("torrents/search/", Method.GET);
             request.AddParameter("q", query);
 
-            var response = _restClient.Execute(request);
+            var response = Execute(request);
 
             if (response.StatusCode == HttpStatusCode.NotFound)
                 return results.ToArray();
