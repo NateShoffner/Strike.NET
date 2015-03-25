@@ -40,6 +40,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Converters\FileInfoConverter.cs" />
     <Compile Include="Converters\FileSizeStringConverter.cs" />
