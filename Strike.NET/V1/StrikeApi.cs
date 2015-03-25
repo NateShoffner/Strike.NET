@@ -72,6 +72,9 @@ namespace StrikeNET.V1
         /// <returns>Returns a Uri for the torrent file.</returns>
         public Uri GetDownloadLink(string hash)
         {
+            if (hash == null)
+                throw new ArgumentNullException("hash");
+
             var request = new RestRequest("torrents/downloads/", Method.GET);
             request.AddParameter("hash", hash);
             var response = Execute<DownloadResponse>(request);
@@ -95,6 +98,9 @@ namespace StrikeNET.V1
         /// <param name="hash">The torrent hash.</param>
         public TorrentInfoResult GetInfo(string hash)
         {
+            if (hash == null)
+                throw new ArgumentNullException("hash");
+
             var results = GetInfo(new[] {hash});
             return results.FirstOrDefault();
         }
@@ -106,6 +112,9 @@ namespace StrikeNET.V1
         /// <param name="truncateQueries">Queries will be truncated if they exceed the limit.</param>
         public TorrentInfoResult[] GetInfo(string[] hashes, bool truncateQueries = false)
         {
+            if (hashes == null)
+                throw new ArgumentNullException("hashes");
+
             var hashList = new List<string>(hashes);
 
             if (hashList.Count > MaxInfoQueries)
@@ -147,6 +156,9 @@ namespace StrikeNET.V1
         /// <returns>Returns base64 decoded description string.</returns>
         public string GetDescriptions(string hash)
         {
+            if (hash == null)
+                throw new ArgumentNullException("hash");
+
             //despite the parameter being pluralized, it only seems to accept a single query
             var request = new RestRequest("torrents/descriptions/", Method.GET);
             request.AddParameter("hashes", hash);
@@ -166,6 +178,9 @@ namespace StrikeNET.V1
         /// <returns>Returns an array of search results.</returns>
         public TorrentSearchResult[] Search(string query)
         {
+            if (query == null)
+                throw new ArgumentNullException("query");
+
             if (query.Trim().Length < MinSearchQueryLength)
                 throw new StrikeException("Query must be at least 4 characters long without whitespace");
 
@@ -199,6 +214,9 @@ namespace StrikeNET.V1
         /// <returns>Returns an array of torrent</returns>
         public TorrentInfoSearchResult[] InfoSearch(string query)
         {
+            if (query == null)
+                throw new ArgumentNullException("query");
+
             var results = new List<TorrentInfoSearchResult>();
 
             var searchResults = new List<TorrentSearchResult>(Search(query));
