@@ -75,7 +75,7 @@ namespace StrikeNET.V1
             var request = new RestRequest("torrents/downloads/", Method.GET);
             request.AddParameter("hash", hash);
             var response = Execute<DownloadResponse>(request);
-            return new Uri(response.Data.Message);
+            return response.Data.Url;
         }
 
         /// <summary>
