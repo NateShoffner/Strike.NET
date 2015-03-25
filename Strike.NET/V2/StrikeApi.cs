@@ -54,16 +54,6 @@ namespace StrikeNET.V2
             return response;
         }
 
-        private IRestResponse Execute(IRestRequest request)
-        {
-            var response = _restClient.Execute(request);
-
-            if (response.ErrorException != null)
-                throw response.ErrorException;
-
-            return response;
-        }
-
         /// <summary>
         ///     Retrieves a download link for a torrent.
         /// </summary>
