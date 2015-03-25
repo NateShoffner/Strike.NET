@@ -17,7 +17,7 @@ using StrikeNET.V1.Responses;
 namespace StrikeNET.V1
 {
     /// <summary>
-    /// Represents the Strike API service.
+    ///     Represents the Strike API service.
     /// </summary>
     public class StrikeApi
     {
@@ -29,7 +29,7 @@ namespace StrikeNET.V1
         private readonly RestClient _restClient;
 
         /// <summary>
-        /// Initializes a new StrikeApi instance.
+        ///     Initializes a new StrikeApi instance.
         /// </summary>
         /// <param name="timeout">The timeout used for requests.</param>
         /// <param name="proxy">The proxy settings to use for requests.</param>
@@ -41,7 +41,7 @@ namespace StrikeNET.V1
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
             };
 
-            _restClient = new RestClient(ApiBaseUrL) { Proxy = proxy, Timeout = timeout, UserAgent = Common.GetUserAgent() };
+            _restClient = new RestClient(ApiBaseUrL) {Proxy = proxy, Timeout = timeout, UserAgent = Common.GetUserAgent()};
             _restClient.AddHandler("application/json", new RestSharpJsonNetDeserializer(serializerSettings));
         }
 
@@ -176,6 +176,7 @@ namespace StrikeNET.V1
             var data = Convert.FromBase64String(response.Data.Message);
             return Encoding.UTF8.GetString(data);
         }
+
         /// <summary>
         ///     Performs a torrent search.
         /// </summary>
@@ -213,7 +214,7 @@ namespace StrikeNET.V1
         }
 
         /// <summary>
-        /// Performs a combined torrent search and info lookup.
+        ///     Performs a combined torrent search and info lookup.
         /// </summary>
         /// <param name="query">Torrent search query.</param>
         /// <returns>Returns an array of torrent</returns>
@@ -234,18 +235,18 @@ namespace StrikeNET.V1
             foreach (var infoResult in infoResults)
             {
                 var searchResult = searchResults.Find(x => x.TorrentHash == infoResult.TorrentHash);
-    
+
                 //this shouldn't ever be null, but just incase...
                 if (searchResult != null)
                 {
                     var r = new TorrentInfoSearchResult
                     {
                         //torrent data
-                        TorrentHash = searchResult.TorrentHash, 
-                        TorrentTitle = searchResult.TorrentTitle, 
+                        TorrentHash = searchResult.TorrentHash,
+                        TorrentTitle = searchResult.TorrentTitle,
                         TorrentCategory = searchResult.TorrentCategory,
                         SubCategory = searchResult.SubCategory,
-                        Seeds = searchResult.Seeds, 
+                        Seeds = searchResult.Seeds,
                         Leeches = searchResult.Leeches,
 
                         //search data
