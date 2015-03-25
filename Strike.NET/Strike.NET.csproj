@@ -44,6 +44,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Converters\FileInfoConverter.cs" />
     <Compile Include="Converters\FileSizeStringConverter.cs" />
+    <Compile Include="Subcategory.cs" />
     <Compile Include="V1\Responses\CountResponse.cs" />
     <Compile Include="V1\Responses\DescriptionsResponse.cs" />
     <Compile Include="V1\Responses\DownloadResponse.cs" />

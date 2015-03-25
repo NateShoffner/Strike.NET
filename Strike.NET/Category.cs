@@ -60,7 +60,7 @@ namespace StrikeNET
             return (Name != null ? Name.GetHashCode() : 0);
         }
 
-        #region Natively Supported Types
+        #region Hardcoded Categories
 
         public static Category Anime { get; private set; }
         public static Category Applications { get; private set; }
@@ -106,7 +106,7 @@ namespace StrikeNET
             return Categories.ToArray();
         }
 
-        public static Category GetTypeByName(string name)
+        public static Category GetCategoryByName(string name)
         {
             return Categories.Find(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
