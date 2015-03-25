@@ -44,6 +44,7 @@
     <Compile Include="Converters\FileInfoConverter.cs" />
     <Compile Include="Converters\FileSizeStringConverter.cs" />
     <Compile Include="V1\Responses\CountResponse.cs" />
+    <Compile Include="V1\Responses\DescriptionsResponse.cs" />
     <Compile Include="V1\Responses\DownloadResponse.cs" />
     <Compile Include="TorrentFileInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,7 +63,7 @@
     <Compile Include="V2\ITorrentInfo.cs" />
     <Compile Include="V2\ITorrentSearchInfo.cs" />
     <Compile Include="V2\Responses\CountResponse.cs" />
-    <Compile Include="V2\Responses\DescriptionResponse.cs" />
+    <Compile Include="V2\Responses\DescriptionsResponse.cs" />
     <Compile Include="V2\Responses\DownloadResponse.cs" />
     <Compile Include="V2\Responses\TorrentInfoResponse.cs" />
     <Compile Include="V2\Responses\TorrentSearchResponse.cs" />

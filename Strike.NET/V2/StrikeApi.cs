@@ -141,7 +141,7 @@ namespace StrikeNET.V2
             var request = new RestRequest("torrents/descriptions/", Method.GET);
             request.AddParameter("hash", hash);
 
-            var response = Execute<DescriptionResponse>(request);
+            var response = Execute<DescriptionsResponse>(request);
 
             if (response.StatusCode == HttpStatusCode.NotFound)
                 return null;

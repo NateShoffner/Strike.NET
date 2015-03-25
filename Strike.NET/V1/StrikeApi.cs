@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -138,6 +139,26 @@ namespace StrikeNET.V1
             return results.ToArray();
         }
 
+        //DescriptionsResponse
+        /// <summary>
+        ///     Gets a torrent description.
+        /// </summary>
+        /// <param name="hash">The torrent hash.</param>
+        /// <returns>Returns base64 decoded description string.</returns>
+        public string GetDescriptions(string hash)
+        {
+            //despite the parameter being pluralized, it only seems to accept a single query
+            var request = new RestRequest("torrents/descriptions/", Method.GET);
+            request.AddParameter("hashes", hash);
+
+            var response = Execute<DescriptionsResponse>(request);
+
+            if (response.StatusCode == HttpStatusCode.NotFound)
+                return null;
+
+            var data = Convert.FromBase64String(response.Data.Message);
+            return Encoding.UTF8.GetString(data);
+        }
         /// <summary>
         ///     Performs a torrent search.
         /// </summary>

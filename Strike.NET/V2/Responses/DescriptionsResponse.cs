@@ -1,6 +1,6 @@
 ﻿namespace StrikeNET.V2.Responses
 {
-    internal class DescriptionResponse
+    internal class DescriptionsResponse
     {
         public string Message { get; set; }
     }
