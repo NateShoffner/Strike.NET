@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using StrikeNET.Converters;
+using StrikeNET.V2.Converters;
 
 #endregion
 

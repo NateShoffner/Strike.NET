@@ -62,6 +62,7 @@
     <Compile Include="V1\TorrentInfoResult.cs" />
     <Compile Include="V1\TorrentInfoSearchResult.cs" />
     <Compile Include="V1\TorrentSearchResult.cs" />
+    <Compile Include="V2\Converters\FileInfoConverter.cs" />
     <Compile Include="V2\ITorrent.cs" />
     <Compile Include="V2\ITorrentInfo.cs" />
     <Compile Include="V2\ITorrentSearchInfo.cs" />
