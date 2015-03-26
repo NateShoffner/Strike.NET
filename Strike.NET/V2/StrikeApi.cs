@@ -159,7 +159,7 @@ namespace StrikeNET.V2
         /// <param name="category">Torrent category.</param>
         /// <param name="subCategory">Torrent subcategory.</param>
         /// <returns>Returns an array of search results.</returns>
-        public TorrentSearchResult[] Search(string phrase, string category = null, string subCategory = null)
+        public TorrentSearchResult[] Search(string phrase, Category category = null, Subcategory subCategory = null)
         {
             if (phrase == null)
                 throw new ArgumentNullException("phrase");
@@ -171,10 +171,11 @@ namespace StrikeNET.V2
 
             var request = new RestRequest("torrents/search/", Method.GET);
             request.AddParameter("phrase", phrase);
-            if (!string.IsNullOrEmpty(category))
-                request.AddParameter("category", category);
-            if (!string.IsNullOrEmpty(subCategory))
-                request.AddParameter("subcategory", subCategory);
+
+            if (category != null)
+                request.AddParameter("category", category.Name);
+            if (subCategory != null)
+                request.AddParameter("subcategory", subCategory.Name);
 
             var response = Execute<TorrentSearchResponse>(request);
 
@@ -190,11 +191,11 @@ namespace StrikeNET.V2
         /// <summary>
         ///     Performs a combined torrent search and info lookup.
         /// </summary>
-        /// <param name="query">Torrent search query.</param>
+        /// <param name="phrase">Torrent search query.</param>
         /// <param name="category">Torrent category.</param>
         /// <param name="subCategory">Torrent subcategory.</param>
         /// <returns>Returns an array of torrent</returns>
-        public TorrentInfoSearchResult[] InfoSearch(string phrase, string category = null, string subCategory = null)
+        public TorrentInfoSearchResult[] InfoSearch(string phrase, Category category = null, Subcategory subCategory = null)
         {
             if (phrase == null)
                 throw new ArgumentNullException("phrase");
