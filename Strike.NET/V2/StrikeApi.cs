@@ -5,10 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using RestSharp;
-using StrikeNET.Deserialization;
 using StrikeNET.V2.Responses;
 
 #endregion
@@ -34,14 +31,7 @@ namespace StrikeNET.V2
         /// <param name="proxy">The proxy settings to use for requests.</param>
         public StrikeApi(int timeout = 0, IWebProxy proxy = null)
         {
-            var serializerSettings = new JsonSerializerSettings
-            {
-                DefaultValueHandling = DefaultValueHandling.Ignore,
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            };
-
-            _restClient = new RestClient(ApiBaseUrL) {Proxy = proxy, Timeout = timeout, UserAgent = Common.GetUserAgent()};
-            _restClient.AddHandler("application/json", new RestSharpJsonNetDeserializer(serializerSettings));
+           _restClient = new RestClient(ApiBaseUrL) {Proxy = proxy, Timeout = timeout, UserAgent = Common.GetUserAgent()};
         }
 
         private IRestResponse<T> Execute<T>(IRestRequest request) where T : new()
