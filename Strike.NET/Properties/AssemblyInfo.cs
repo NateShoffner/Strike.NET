@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("Strike.NET")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription(".NET wrapper for the Strike API")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Nate Shoffner")]
 [assembly: AssemblyProduct("Strike.NET")]
