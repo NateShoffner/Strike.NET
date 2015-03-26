@@ -20,7 +20,6 @@ namespace StrikeNET.V2.Converters
         {
             var files = new List<TorrentFileInfo>();
 
-            Console.WriteLine("loading");
             var fileInfo = JObject.Load(reader);
 
             var fileNamesArray = fileInfo.SelectToken("file_names") as JArray;
