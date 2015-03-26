@@ -2,7 +2,7 @@
 
 using System;
 using Newtonsoft.Json;
-using StrikeNET.Converters;
+using StrikeNET.V1.Converters;
 
 #endregion
 

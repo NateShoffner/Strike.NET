@@ -7,8 +7,11 @@ using Newtonsoft.Json.Linq;
 
 #endregion
 
-namespace StrikeNET.Converters
+namespace StrikeNET.V1.Converters
 {
+    /// <summary>
+    /// Converts nested JSON array to List<TorrentFileInfo>
+    /// </summary>
     internal class FileInfoConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -20,7 +23,7 @@ namespace StrikeNET.Converters
         {
             var files = new List<TorrentFileInfo>();
 
-            var fileInfo = JObject.Load(reader);
+            var fileInfo = JArray.Load(reader);
 
             var o = fileInfo.First;
 

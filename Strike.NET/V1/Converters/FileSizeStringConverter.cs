@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 #endregion
 
-namespace StrikeNET.Converters
+namespace StrikeNET.V1.Converters
 {
     /// <summary>
     ///     Converts string-based file size format (ex. 322.69 MB) to bytes.
