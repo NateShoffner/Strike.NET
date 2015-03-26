@@ -42,7 +42,7 @@ namespace StrikeNET.V1.Converters
                     var total = fileLengths.Count;
                     for (var i = 0; i < total; i++)
                     {
-                        var fi = new TorrentFileInfo(fileNames[i], fileLengths[i]);
+                        var fi = new TorrentFileInfo(fileNames[i].Trim(), fileLengths[i]);
                         files.Add(fi);
                     }
                 }
