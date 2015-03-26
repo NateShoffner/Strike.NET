@@ -10,7 +10,7 @@ namespace StrikeNET
     /// <summary>
     ///     Represents a torrent Subcategory.
     /// </summary>
-    public sealed class Subcategory
+    public sealed class Subcategory : IComparable, IComparable<Subcategory>
     {
         /// <summary>
         ///     Initializes a new subcategory.
@@ -26,45 +26,15 @@ namespace StrikeNET
         /// </summary>
         public string Name { get; private set; }
 
-        public override string ToString()
+        public int CompareTo(object obj)
         {
-            return Name;
+            var other = obj as Subcategory;
+            return CompareTo(other);
         }
 
-        public static bool operator ==(Subcategory a, Subcategory b)
+        public int CompareTo(Subcategory other)
         {
-            if (ReferenceEquals(a, b))
-                return true;
-
-            if (((object) a == null) || ((object) b == null))
-                return false;
-
-            return a.Name == b.Name;
-        }
-
-        public static bool operator !=(Subcategory x, Subcategory y)
-        {
-            return !(x == y);
-        }
-
-        public bool Equals(Subcategory other)
-        {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return Equals(other.Name, Name);
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof (Subcategory)) return false;
-            return Equals((Subcategory) obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return (Name != null ? Name.GetHashCode() : 0);
+            return other != null ? string.Compare(Name, other.Name, StringComparison.OrdinalIgnoreCase) : 0;
         }
 
         #region Hardcoded Subcategories
@@ -544,5 +514,41 @@ namespace StrikeNET
         }
 
         #endregion
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public static bool operator ==(Subcategory a, Subcategory b)
+        {
+            if (ReferenceEquals(a, b))
+                return true;
+
+            if (((object) a == null) || ((object) b == null))
+                return false;
+
+            return a.Name == b.Name;
+        }
+
+        public static bool operator !=(Subcategory x, Subcategory y)
+        {
+            return !(x == y);
+        }
+
+        public bool Equals(Subcategory other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Equals(other.Name, Name);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != typeof (Subcategory)) return false;
+            return Equals((Subcategory) obj);
+        }
     }
 }

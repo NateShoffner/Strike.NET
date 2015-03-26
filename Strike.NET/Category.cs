@@ -10,7 +10,7 @@ namespace StrikeNET
     /// <summary>
     ///     Represents a torrent category.
     /// </summary>
-    public sealed class Category
+    public sealed class Category : IComparable, IComparable<Category>
     {
         /// <summary>
         ///     Initializes a new category.
@@ -26,45 +26,15 @@ namespace StrikeNET
         /// </summary>
         public string Name { get; private set; }
 
-        public override string ToString()
+        public int CompareTo(object obj)
         {
-            return Name;
+            var other = obj as Category;
+            return CompareTo(other);
         }
 
-        public static bool operator ==(Category a, Category b)
+        public int CompareTo(Category other)
         {
-            if (ReferenceEquals(a, b))
-                return true;
-
-            if (((object) a == null) || ((object) b == null))
-                return false;
-
-            return a.Name == b.Name;
-        }
-
-        public static bool operator !=(Category x, Category y)
-        {
-            return !(x == y);
-        }
-
-        public bool Equals(Category other)
-        {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return Equals(other.Name, Name);
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof (Category)) return false;
-            return Equals((Category) obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return (Name != null ? Name.GetHashCode() : 0);
+            return other != null ? string.Compare(Name, other.Name, StringComparison.OrdinalIgnoreCase) : 0;
         }
 
         #region Hardcoded Categories
@@ -165,5 +135,46 @@ namespace StrikeNET
         }
 
         #endregion
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public static bool operator ==(Category a, Category b)
+        {
+            if (ReferenceEquals(a, b))
+                return true;
+
+            if (((object) a == null) || ((object) b == null))
+                return false;
+
+            return a.Name == b.Name;
+        }
+
+        public static bool operator !=(Category x, Category y)
+        {
+            return !(x == y);
+        }
+
+        public bool Equals(Category other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Equals(other.Name, Name);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != typeof (Category)) return false;
+            return Equals((Category) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return (Name != null ? Name.GetHashCode() : 0);
+        }
     }
 }
