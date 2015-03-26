@@ -12,11 +12,18 @@ namespace StrikeNET
     /// </summary>
     public sealed class Category
     {
+        /// <summary>
+        ///     Initializes a new category.
+        /// </summary>
+        /// <param name="name">The category name.</param>
         public Category(string name)
         {
             Name = name;
         }
 
+        /// <summary>
+        ///     The category name.
+        /// </summary>
         public string Name { get; private set; }
 
         public override string ToString()
@@ -62,15 +69,50 @@ namespace StrikeNET
 
         #region Hardcoded Categories
 
+        /// <summary>
+        ///     Anime
+        /// </summary>
         public static Category Anime { get; private set; }
+
+        /// <summary>
+        ///     Applications
+        /// </summary>
         public static Category Applications { get; private set; }
+
+        /// <summary>
+        ///     Books
+        /// </summary>
         public static Category Books { get; private set; }
+
+        /// <summary>
+        ///     Games
+        /// </summary>
         public static Category Games { get; private set; }
+
+        /// <summary>
+        ///     Movies
+        /// </summary>
         public static Category Movies { get; private set; }
+
+        /// <summary>
+        ///     Music
+        /// </summary>
         public static Category Music { get; private set; }
+
+        /// <summary>
+        ///     Other
+        /// </summary>
         public static Category Other { get; private set; }
-        public static Category Tv { get; private set; }
-        public static Category Xxx { get; private set; }
+
+        /// <summary>
+        ///     TV
+        /// </summary>
+        public static Category TV { get; private set; }
+
+        /// <summary>
+        ///     XXX
+        /// </summary>
+        public static Category XXX { get; private set; }
 
         #endregion
 
@@ -87,8 +129,8 @@ namespace StrikeNET
             Movies = new Category("Movies");
             Music = new Category("Music");
             Other = new Category("Other");
-            Tv = new Category("TV");
-            Xxx = new Category("XXX");
+            TV = new Category("TV");
+            XXX = new Category("XXX");
 
             Categories = new List<Category>
             {
@@ -97,15 +139,26 @@ namespace StrikeNET
                 Books,
                 Games,
                 Movies,
-                Music, Other, Tv, Xxx
+                Music, Other,
+                TV,
+                XXX
             };
         }
 
+        /// <summary>
+        ///     Returns a collection of categories.
+        /// </summary>
+        /// <returns>Returns an array of categories.</returns>
         public static Category[] GetCategories()
         {
             return Categories.ToArray();
         }
 
+        /// <summary>
+        ///     Gets a category by its display name.
+        /// </summary>
+        /// <param name="name">The category name</param>
+        /// <returns>Returns respective category if found, otherwise null.</returns>
         public static Category GetCategoryByName(string name)
         {
             return Categories.Find(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
