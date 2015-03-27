@@ -1,10 +1,4 @@
-﻿#region
-
-using System.IO;
-
-#endregion
-
-namespace StrikeNET
+﻿namespace StrikeNET
 {
     /// <summary>
     ///     Represents an individual file within a torrent.
@@ -31,14 +25,5 @@ namespace StrikeNET
         ///     The file size.
         /// </summary>
         public long Size { get; private set; }
-
-        /// <summary>
-        ///     Returns a FileInfo instance of the TorrentFileInfo filename.
-        /// </summary>
-        /// <returns>Returns a FileInfo instance.</returns>
-        public FileInfo ToFileInfo()
-        {
-            return new FileInfo(FileName);
-        }
     }
 }
