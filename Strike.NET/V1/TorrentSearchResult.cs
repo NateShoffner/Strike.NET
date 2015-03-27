@@ -6,6 +6,9 @@ using System;
 
 namespace StrikeNET.V1
 {
+    /// <summary>
+    ///     Repereats a torrent search result.
+    /// </summary>
     public class TorrentSearchResult : ITorrentSearchInfo, ITorrent
     {
         #region Implementation of ITorrentSearchInfo

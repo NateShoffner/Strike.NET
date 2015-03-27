@@ -7,6 +7,9 @@ using System.Collections.Generic;
 
 namespace StrikeNET.V2
 {
+    /// <summary>
+    ///     Represents a combined torrent info search result.
+    /// </summary>
     public class TorrentInfoSearchResult : ITorrentInfo, ITorrentSearchInfo, ITorrent
     {
         #region Implementation of ITorrentInfo

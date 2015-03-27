@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 namespace StrikeNET.V1.Converters
 {
     /// <summary>
-    /// Converts nested JSON array to List<TorrentFileInfo>
+    ///     Converts nested JSON array to List<TorrentFileInfo>
     /// </summary>
     internal class FileInfoConverter : JsonConverter
     {

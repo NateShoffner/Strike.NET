@@ -45,7 +45,7 @@ namespace StrikeNET.V2.Converters
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(List<TorrentFileInfo>);
+            return objectType == typeof (List<TorrentFileInfo>);
         }
     }
 }
