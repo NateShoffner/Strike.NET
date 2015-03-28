@@ -19,10 +19,10 @@ namespace StrikeNET.V2
         Uri Page { get; }
 
         /// <summary>
-        ///     The dedicated download link for the torrent.
+        ///     The torrent magnet Uri.
         /// </summary>
-        [JsonProperty("download_link")]
-        Uri DownloadLink { get; }
+        [JsonProperty("magnet_uri")]
+        Uri MagnetUri { get; }
 
         /// <summary>
         ///     The dedicated RSS feed for the torrent.

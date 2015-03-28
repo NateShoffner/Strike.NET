@@ -14,7 +14,7 @@ namespace StrikeNET.V2
         #region Implementation of ITorrentSearchInfo
 
         public Uri Page { get; private set; }
-        public Uri DownloadLink { get; private set; }
+        public Uri MagnetUri { get; private set; }
         public Uri RssFeed { get; private set; }
         public int DownloadCount { get; private set; }
 

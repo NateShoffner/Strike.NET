@@ -228,7 +228,7 @@ namespace StrikeNET.V2
 
                         //search data
                         Page = searchResult.Page,
-                        DownloadLink = searchResult.DownloadLink,
+                        DownloadLink = searchResult.MagnetUri,
                         RssFeed = searchResult.RssFeed,
                         DownloadCount = searchResult.DownloadCount,
 
